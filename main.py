@@ -8,12 +8,12 @@ import zipfile
 base_id = 104465
 
 # Заменить на актуальный url отсюда https://github.com/etspring/pdd_russia/releases
-questions_url = "https://github.com/etspring/pdd_russia/archive/refs/tags/v2024.Q3.0.zip"
+questions_url = "https://github.com/etspring/pdd_russia/archive/refs/tags/v2024.Q4.0.zip"
 
 # Скачивание файла с билетами и его распаковка
 
 file_name, _ = urllib.request.urlretrieve(questions_url)
-extracted_folder = file_name + "_extracted\\"
+extracted_folder = file_name + "_extracted" + os.sep
 print(file_name)
 with zipfile.ZipFile(file_name, 'r') as zip_ref:
     zip_ref.extractall(extracted_folder)
@@ -78,7 +78,7 @@ for deck_name in decks.keys():
             if answer["is_correct"]:
                 correct_answer = answer["answer_text"]
         question_text += "</ol>"
-        answer_text = f"{question['correct_answer']} - {correct_answer} <br> {question['answer_tip']}"
+        answer_text = f"<b>{question['correct_answer']}</b> - {correct_answer} <br> {question['answer_tip']}"
         my_note = genanki.Note(
             model=my_model,
             fields=[
